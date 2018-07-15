@@ -42,8 +42,6 @@ const clovaSkillHandler = clova.Client
 })
 .handle();
 
-const clovaMiddleware = clova.Middleware({ applicationId: "com.example.test_domain" });
-
 const check = (req, res, next) => {
   console.log(`request header is ${JSON.stringify(req.headers)}`);
   console.log(`sig is ${req.headers.signaturecek}`)
