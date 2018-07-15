@@ -46,6 +46,7 @@ const clovaMiddleware = clova.Middleware({ applicationId: "com.example.test_doma
 
 const check = (req, res, next) => {
   console.log(`request header is ${JSON.stringify(req.headers)}`);
+  console.log(`sig is ${req.headers.signaturecek}`)
   console.log(`body is ${JSON.stringify(req.body)}`);
   console.log(`hostname is ${req.hostname}`);
   console.log(`originalUrl is ${req.originalUrl}`);
@@ -56,7 +57,8 @@ const check = (req, res, next) => {
 
 const app = new express();
 app.use(check);
-app.post('/', clovaMiddleware, clovaSkillHandler);
-app.get('/', clovaMiddleware, clovaSkillHandler);
+app.post('/', clovaSkillHandler);
 
-exports.clova = functions.https.onRequest(app);
+const test = functions.https.onRequest(app);
+
+module.exports = { test };
